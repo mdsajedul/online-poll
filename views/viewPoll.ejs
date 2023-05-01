@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 my-5">
+                <div class="card card-body">
+                    <h4><%= poll.title %> </h4>
+                    <p class="px-2">  <%= poll.description %> </p>
+                    
+                    <div class="my-4">
+                        <h5>What is your Opinion</h5>
+                        <form action="/polls/<%= poll.id %>" method="POST"class="px-1">
+                            <% for (let option of poll.options) { %>
+                                <div class="custom-control custom-radio ">
+                                    <input type="radio" name="option" id=" <%= option._id %> " class="custom-control-input" value=" <%= option._id %> ">
+                                    <label for=" <%= option._id %> " class="custom-control-label"> <%= option.name %> </label>
+                                </div>
+                            <% } %>
+                            <input type="submit" value="Submit Your Opinion" class="btn btn-primary btn-sm my-3">
+                        </form>
+                    </div>
+                    <div class="my-3">
+                        <h5>Result</h5>
+                        <ul class="list-group py-0">
+                            <% for (let r of result){ %>
+                                <li class="list-group-item ">
+                                    <div>
+                                        
+                                    </div>
+                                    <p>
+                                        <%= r.name %> 
+                                    </p>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style= "width: <%= r.roundPercentage %>%;" aria-valuenow="70" aria-valuemin="<%= r.roundPercentage %>" aria-valuemax="100">
+                                              
+                                      </div>
+                                      <span class="px-2"><%= r.percentage.toFixed(2) %> %</span>
+                                      
+                                      </div>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
